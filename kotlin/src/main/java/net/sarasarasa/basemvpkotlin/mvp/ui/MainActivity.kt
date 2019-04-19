@@ -8,12 +8,17 @@ import net.sarasarasa.basemvpkotlin.mvp.presenter.MainPresenter
 
 class MainActivity : MvpActivity<MainContract.View, MainPresenter>(), MainContract.View {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        layoutResID = R.layout.activity_main
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
     }
 
     override fun initView() {
+
+    }
+
+    override fun bindView() {
 
     }
 

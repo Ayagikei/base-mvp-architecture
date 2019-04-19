@@ -3,6 +3,7 @@ package net.sarasarasa.basemvp.base;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 @SuppressWarnings("unchecked")
@@ -11,15 +12,30 @@ public abstract class MvpActivity<P extends IMvpPresenter> extends AppCompatActi
     protected P mPresenter;
     protected boolean isRetainInstance = false;
 
+    @LayoutRes
+    protected int layoutResID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(layoutResID);
+
         mPresenter = createPresenter();
         if (mPresenter == null) {
             throw new NullPointerException("Presenter is null");
         }
         mPresenter.attachView(this);
+
+
+        bindView();
         initView();
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 
     @Override
@@ -36,6 +52,8 @@ public abstract class MvpActivity<P extends IMvpPresenter> extends AppCompatActi
     protected abstract P createPresenter();
 
     protected abstract void initView();
+
+    protected abstract void bindView();
 
     @Override
     public void showMessage(String message) {

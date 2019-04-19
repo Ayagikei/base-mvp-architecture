@@ -11,8 +11,8 @@ public class MainActivity extends MvpActivity<MainContract.Presenter> implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        layoutResID = R.layout.activity_main;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
     }
 
     @Override
@@ -21,7 +21,13 @@ public class MainActivity extends MvpActivity<MainContract.Presenter> implements
     }
 
     @Override
+    protected void bindView() {
+
+    }
+
+    @Override
     protected void initView() {
 
     }
+
 }
